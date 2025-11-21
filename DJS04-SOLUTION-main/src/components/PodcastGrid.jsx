@@ -1,14 +1,15 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import PodcastCard from "./PodcastCard";
 import { PodcastContext } from "../context/PodcastContext";
 import styles from "./PodcastGrid.module.css";
-import { useContext } from "react";
 
 /**
  * PodcastGrid Component
  *
  * Renders a responsive grid of podcast preview cards using filtered and paginated
- * podcast data from context. Each card displays a podcast’s metadata including
- * title, image, genres, season count, and last updated date.
+ * podcast data from context. Each card is wrapped in a Link to navigate to the
+ * podcast detail page.
  *
  * If the filtered list is empty, it displays a user-friendly "no results" message.
  *
@@ -20,6 +21,7 @@ import { useContext } from "react";
  */
 export default function PodcastGrid({ genres }) {
   const { podcasts } = useContext(PodcastContext);
+  
   if (!podcasts.length) {
     return (
       <p className={styles.noResults}>
@@ -27,13 +29,18 @@ export default function PodcastGrid({ genres }) {
       </p>
     );
   }
+  
   return (
-    <>
-      <div className={styles.grid}>
-        {podcasts.map((podcast) => (
-          <PodcastCard key={podcast.id} podcast={podcast} genres={genres} />
-        ))}
-      </div>
-    </>
+    <div className={styles.grid}>
+      {podcasts.map((podcast) => (
+        <Link 
+          key={podcast.id} 
+          to={`/podcast/${podcast.id}`}
+          className={styles.cardLink}
+        >
+          <PodcastCard podcast={podcast} genres={genres} />
+        </Link>
+      ))}
+    </div>
   );
 }
