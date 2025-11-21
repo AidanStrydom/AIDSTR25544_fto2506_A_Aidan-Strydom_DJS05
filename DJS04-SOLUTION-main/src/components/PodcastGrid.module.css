@@ -1,13 +1,24 @@
 .grid {
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
   padding: 1rem;
 }
 
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.cardLink:hover {
+  transform: translateY(-4px);
+}
+
 .noResults {
-  padding: 2rem;
   text-align: center;
-  font-style: italic;
   color: #888;
+  padding: 3rem;
+  font-size: 1.1rem;
 }
