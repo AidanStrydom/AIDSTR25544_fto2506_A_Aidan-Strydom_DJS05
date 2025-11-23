@@ -9,7 +9,7 @@ import SortSelect from "./components/SortSelect";
 import GenreFilter from "./components/GenreFilter";
 import PodcastGrid from "./components/PodcastGrid";
 import Pagination from "./components/Pagination";
-import PodcastDetail from "./pages/PodcastDetail";
+import PodcastDetail from "./components/PodcastDetail";  
 import styles from "./App.module.css";
 
 /**
@@ -66,7 +66,7 @@ export default function App() {
             }
           />
 
-          {/* Individual podcast page */}
+          {/* Detail route - individual podcast page */}
           <Route path="/podcast/:id" element={<PodcastDetail />} />
         </Routes>
       </PodcastProvider>
