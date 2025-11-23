@@ -9,7 +9,7 @@ import SortSelect from "./components/SortSelect";
 import GenreFilter from "./components/GenreFilter";
 import PodcastGrid from "./components/PodcastGrid";
 import Pagination from "./components/Pagination";
-import PodcastDetail from "./components/PodcastDetail";
+import PodcastDetail from "./pages/PodcastDetail";
 import styles from "./App.module.css";
 
 /**
@@ -28,12 +28,12 @@ export default function App() {
   return (
     <>
       <Header />
-      <Routes>
-        {/* Home route - podcast grid */}
-        <Route
-          path="/"
-          element={
-            <PodcastProvider initialPodcasts={podcasts}>
+      <PodcastProvider initialPodcasts={podcasts}>
+        <Routes>
+          {/* Home route - podcast grid */}
+          <Route
+            path="/"
+            element={
               <main className={styles.main}>
                 <section className={styles.controls}>
                   <SearchBar />
@@ -63,13 +63,13 @@ export default function App() {
                   </>
                 )}
               </main>
-            </PodcastProvider>
-          }
-        />
+            }
+          />
 
-        {/* Detail route - individual podcast page */}
-        <Route path="/podcast/:id" element={<PodcastDetail />} />
-      </Routes>
+          {/* Individual podcast page */}
+          <Route path="/podcast/:id" element={<PodcastDetail />} />
+        </Routes>
+      </PodcastProvider>
     </>
   );
 }
